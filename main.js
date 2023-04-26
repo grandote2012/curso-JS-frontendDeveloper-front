@@ -3,7 +3,7 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const menuHamIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
-const aside = document.querySelector('.product-detail');
+const shopingCartContainer = document.querySelector('#shopingCartContainer');
 const CardsContainer = document.querySelector('.cards-container');
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
@@ -11,19 +11,19 @@ menuHamIcon.addEventListener('click', toggleMobileMenu);
 menuCarritoIcon.addEventListener('click', toggleCarritoAside);
 
 function toggleDesktopMenu() {
-    const isAsideClosed = aside.classList.contains('inactive');
+    const isAsideClosed = shopingCartContainer.classList.contains('inactive');
     if(!isAsideClosed){
-        aside.classList.add('inactive');
+        shopingCartContainer.classList.add('inactive');
     }
 
     desktopMenu.classList.toggle('inactive');
 }
 
 function toggleMobileMenu() {
-   const isAsideClosed = aside.classList.contains('inactive');
+   const isAsideClosed = shopingCartContainer.classList.contains('inactive');
 
     if(!isAsideClosed){
-        aside.classList.add('inactive');
+        shopingCartContainer.classList.add('inactive');
     }
     mobileMenu.classList.toggle('inactive');
 }
@@ -39,7 +39,7 @@ function toggleCarritoAside() {
     if(!isDesktopMenuClosed){
         desktopMenu.classList.add('inactive');
     }
-    aside.classList.toggle('inactive');
+    shopingCartContainer.classList.toggle('inactive');
 }
 
 //------------Creamos la info que va a usar la funcion renderProducts para llenar la tienda de productos , eventualmente a futuro esta info se sacaria de una lista de datos-------------------
