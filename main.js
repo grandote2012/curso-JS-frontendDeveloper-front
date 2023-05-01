@@ -5,10 +5,13 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const menuCarritoIcon = document.querySelector('.navbar-shopping-cart');
 const shopingCartContainer = document.querySelector('#shopingCartContainer');
 const CardsContainer = document.querySelector('.cards-container');
+const productDetailContainer = document.querySelector('#productDetail');
+const productDetailCloseIcon = document.querySelector('.product-detail-close');
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuHamIcon.addEventListener('click', toggleMobileMenu);
 menuCarritoIcon.addEventListener('click', toggleCarritoAside);
+productDetailCloseIcon.addEventListener('click',closeProductDetailAside);
 
 function toggleDesktopMenu() {
     const isAsideClosed = shopingCartContainer.classList.contains('inactive');
@@ -25,6 +28,8 @@ function toggleMobileMenu() {
     if(!isAsideClosed){
         shopingCartContainer.classList.add('inactive');
     }
+
+    closeProductDetailAside();
     mobileMenu.classList.toggle('inactive');
 }
 
@@ -40,6 +45,25 @@ function toggleCarritoAside() {
         desktopMenu.classList.add('inactive');
     }
     shopingCartContainer.classList.toggle('inactive');
+
+
+    const isProductDetailClosed = productDetailContainer.classList.contains('inactive');
+
+    if(!isProductDetailClosed){
+        productDetailContainer.classList.add('inactive');
+    }
+
+
+}
+
+function openProductDetailAside(){
+    productDetailContainer.classList.remove('inactive');
+    shopingCartContainer.classList.add('inactive'); // cierro el carrito porque abri el detalle de productos aside
+
+}
+
+function closeProductDetailAside(){
+    productDetailContainer.classList.add('inactive');
 }
 
 //------------Creamos la info que va a usar la funcion renderProducts para llenar la tienda de productos , eventualmente a futuro esta info se sacaria de una lista de datos-------------------
@@ -58,7 +82,7 @@ productList.push({
 productList.push({
     name: 'cpu',
     price: 600,
-    image: "https://images.pexels.com/photos/100582/pexels-photo-100582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    image: "https://http2.mlstatic.com/D_NQ_NP_995978-MLA43242206151_082020-O.webp",
 });
 
 
@@ -71,6 +95,7 @@ function renderProducts(arr){
         const productImg = document.createElement('img');
         productImg.setAttribute('src',product.image);
         //product = {name,price,image} -> product.image
+        productImg.addEventListener('click',openProductDetailAside); // agrego la escucha del evento para ver cuando clickean la foto
     
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
